@@ -26,7 +26,7 @@ public class Dataset {
 
         // Creating dummy members
         List<Member> members = new ArrayList<>();
-        members.add(new Member(1, "JohnDoe", "password123"));
+        members.add(new Librarian(1, "JohnDoe", "password123"));
         members.add(new Member(2, "JaneSmith", "securePass"));
         members.add(new Member(3, "BobBrown", "passw0rd"));
         members.add(new Member(4, "AliceJones", "alice2024"));

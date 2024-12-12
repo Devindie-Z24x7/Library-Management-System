@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class MenuHandler {
-    private Member AuthenticatedMember;
-    private Scanner scanner;
+    Member AuthenticatedMember;
+    Scanner scanner;
 
     public MenuHandler(Member authenticatedMember, Scanner scanner) {
         this.AuthenticatedMember = authenticatedMember;
@@ -42,20 +42,20 @@ public class MenuHandler {
         }
     }
 
-    private void borrowBook() {
+    void borrowBook() {
         System.out.print("Enter the ID of the book you want to borrow: ");
         int bookId = scanner.nextInt();
         scanner.nextLine();
         // add the book to list of books borrowed by the user
         AuthenticatedMember.addBookToBorrowedList(bookId);
 //       reducing the no of copies by 1 once a book is borrowed
-        AuthenticatedMember.borrowBook(bookId);
+        AuthenticatedMember.UpdatingNoofBooks(bookId);
 
 
 
     }
 // check availability of a particular book
-    private void checkBookAvailability() {
+void checkBookAvailability() {
         System.out.print("Enter the ID of the book to check availability: ");
         int bookId = scanner.nextInt();
         scanner.nextLine();
@@ -63,7 +63,7 @@ public class MenuHandler {
     }
 
 //    check available books
-    private void checkAvailableBooks() {
+void checkAvailableBooks() {
         System.out.println("Available books:");
         AuthenticatedMember.checkAvailability();
     }

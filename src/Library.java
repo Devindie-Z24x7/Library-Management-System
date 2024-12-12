@@ -73,7 +73,13 @@ public class Library {
         for (Member member : Library.getInstance().getMembers()) {
             if (member.getUserName().equals(userName)) {
                 if (member.verifyPassword(password)) {
-                    return member; // Return the Member object if login is successful
+                    if (member instanceof Librarian) {
+                        // If the member is a librarian, return the Librarian object
+                        return (Librarian) member;
+                    } else {
+                        // If the member is not a librarian, return the Member object
+                        return member;
+                    } // Return the Member object if login is successful
                 } else {
                     System.out.println("Invalid password.");
                     return null; // Return null if the password is incorrect
@@ -83,6 +89,8 @@ public class Library {
         System.out.println("User not found.");
         return null; // Return null if the user is not found
     }
+
+
 
 
 

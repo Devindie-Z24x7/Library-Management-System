@@ -94,8 +94,7 @@ public class Member {
         }
     }
 
-
-    public void borrowBook(int bookId) {
+    public void UpdatingNoofBooks(int bookId) {
         for (Book book : Library.getInstance().checkAvailability()){
             if (book.getBookId() == bookId) {
                 book.setNoOfCopies(book.getNoOfCopies()-1);

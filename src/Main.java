@@ -20,13 +20,19 @@ public class Main {
         System.out.print("Enter your password: ");
         String password = scanner.nextLine();
 
-//        authenticating the user
+//       authenticating the user
         Member AuthenticatedMember = library.login(userName, password);
 
         if(AuthenticatedMember != null) {
             System.out.println("You have successfully logged in");
-            MenuHandler menuHandler = new MenuHandler(AuthenticatedMember, scanner);
-            menuHandler.displayMenu();
+            if (AuthenticatedMember instanceof Librarian){
+                MenuHandlerLibrarian librarianMenuHandler = new MenuHandlerLibrarian(AuthenticatedMember, scanner);
+                librarianMenuHandler.displayMenu();
+            }
+            else{
+                MenuHandler menuHandler = new MenuHandler(AuthenticatedMember, scanner);
+                menuHandler.displayMenu();
+            }
         }
         else{
             System.out.println("Login failed.");
