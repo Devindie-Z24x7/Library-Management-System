@@ -10,19 +10,20 @@ public class MenuHandlerLibrarian extends MenuHandler {
     @Override
     public void displayMenu() {
         boolean isLoggedIn = true;
+        System.out.println("\nWelcome, " + AuthenticatedMember.getUserName() + " (Librarian)! Choose an option:");
         while (isLoggedIn) {
             // Accessing the AuthenticatedMember from the parent class
-            System.out.println("\nWelcome, " + AuthenticatedMember.getUserName() + " (Librarian)! Choose an option:");
             System.out.println("1. Borrow a book");
             System.out.println("2. Check availability of a book");
             System.out.println("3. Check available books");
-            System.out.println("4. Register a new member");
-            System.out.println("5. Remove a member");
-            System.out.println("6. Add a book");
-            System.out.println("7. Remove a book");
-            System.out.println("8. Logout");
+            System.out.println("4. Return a book");
+            System.out.println("5. Register a new member");
+            System.out.println("6. Remove a member");
+            System.out.println("7. Add a book");
+            System.out.println("8. Remove a book");
+            System.out.println("9. Logout");
 
-            System.out.print("Enter your choice (1-8): ");
+            System.out.print("Enter your choice (1-9): ");
             int choice = scanner.nextInt(); // Use scanner to take input
             scanner.nextLine(); // Consume the newline
 
@@ -37,18 +38,21 @@ public class MenuHandlerLibrarian extends MenuHandler {
                     checkAvailableBooks();
                     break;
                 case 4:
-                    registerMember();
+                    returnBook();
                     break;
                 case 5:
-                    removeMember();
+                    registerMember();
                     break;
                 case 6:
-                    addBook();
+                    removeMember();
                     break;
                 case 7:
-                    removeBook();
+                    addBook();
                     break;
                 case 8:
+                    removeBook();
+                    break;
+                case 9:
                     isLoggedIn = false;
                     System.out.println("You have logged out successfully.");
                     break;

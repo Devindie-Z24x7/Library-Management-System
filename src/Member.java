@@ -10,7 +10,7 @@ public class Member {
     public Member(int memberId, String userName, String password, List<Book> booksBorrowed) {
         MemberId = memberId;
         UserName = userName;
-        Password =  hashPassword(password);
+        Password = hashPassword(password);
         BooksBorrowed = booksBorrowed;
     }
 
@@ -74,7 +74,7 @@ public class Member {
         List<Book> books = library.getBooks();
         for (Book book : books) {
             if (book.getBookId() == bookId) {
-                if (book.getNoOfCopies() >0) {
+                if (book.getNoOfCopies() > 0) {
                     System.out.println("Book with ID " + bookId + " is available.");
                     return;
                 } else {
@@ -90,14 +90,24 @@ public class Member {
         Library library = Library.getInstance();
         List<Book> availableBooks = library.checkAvailability();
         for (Book book : availableBooks) {
-            System.out.println(book.getBookId()+"."+book.getTitle());
+            System.out.println(book.getBookId() + "." + book.getTitle());
         }
     }
 
-    public void UpdatingNoofBooks(int bookId) {
-        for (Book book : Library.getInstance().checkAvailability()){
+    public void DecreaseBookCount(int bookId) {
+        for (Book book : Library.getInstance().checkAvailability()) {
             if (book.getBookId() == bookId) {
-                book.setNoOfCopies(book.getNoOfCopies()-1);
+                book.setNoOfCopies(book.getNoOfCopies() - 1);
+                break;
+
+            }
+        }
+    }
+
+    public void IncreaseBookCount(int bookId) {
+        for (Book book : Library.getInstance().checkAvailability()) {
+            if (book.getBookId() == bookId) {
+                book.setNoOfCopies(book.getNoOfCopies() + 1);
                 break;
 
             }
@@ -109,7 +119,7 @@ public class Member {
 
         for (Book book : Library.getInstance().getBooks()) {
             if (book.getBookId() == bookId) {
-                if (book.getNoOfCopies() >0) { // Check if the book is available
+                if (book.getNoOfCopies() > 0) { // Check if the book is available
                     BooksBorrowed.add(book);
                     System.out.println("Book with ID " + bookId + " has been added to your borrowed list.");
                 } else {
@@ -126,5 +136,21 @@ public class Member {
         }
     }
 
+    public void removeBookFromBorrowedList(int bookId) {
+        boolean bookFound = false; // Flag to track if the book was found
+
+        for (Book book : BooksBorrowed) {
+            if (book.getBookId() == bookId) {
+                BooksBorrowed.remove(book);
+                System.out.println("Book with ID " + bookId + " has been removed from your borrowed list.");
+            }
+            bookFound = true; // Mark the book as found
+            break; // Exit the loop once the book is found and processed
+        }
+        // If the book ID was not found in the library
+        if (!bookFound) {
+            System.out.println("Book with ID " + bookId + " not found in your borrowed list");
+        }
+    }
 }
 
